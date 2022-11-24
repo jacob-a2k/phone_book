@@ -12,6 +12,7 @@ void show_menu();
 void add(Book user[],int i);
 void display(Book user[],int i);
 void edit(Book user[]);
+bool delete_member(Book user[],int i);
 
 int main()
 {
@@ -34,7 +35,9 @@ int main()
             display(user,i);
             break;
         case 4:
-            i--;
+            if(delete_member(user,i)){
+                i--;
+            }
             break;
         case 5:
             exit(0);
@@ -62,6 +65,12 @@ void add(Book user[], int i){
     cout << "Enter phone" << endl;
     cin >> user[i].phone;
 }
+void edit(Book user[]){
+    int number;
+    cout << "Which contact you want to edit?" << endl;
+    cin >> number;
+    add(user,number-1);
+}
 void display(Book user[],int i){
     if(i == 0){
         cout << "Phone book is emplty!" << endl;
@@ -76,9 +85,18 @@ void display(Book user[],int i){
         }
     }
 }
-void edit(Book user[]){
+bool delete_member(Book user[],int i){
+    cout << "Which user you want to delete?" << endl;
     int number;
-    cout << "Which contact you want to edit?" << endl;
     cin >> number;
-    add(user,number-1);
+    if(number > i){
+        cout << "Our phone book doesn't contain that number!" << endl;
+        return false;
+    }
+    else if(number < i){
+        for(int j = number-1; j < i; j++){
+            user[j] = user[j+1];
+        }
+        return true;
+    }
 }
