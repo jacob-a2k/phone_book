@@ -1,7 +1,7 @@
 #include <iostream>
 
 using namespace std;
-
+//Zmien na User
 struct Book{
     string name;
     string surname;
@@ -9,6 +9,7 @@ struct Book{
 };
 
 void show_menu();
+//nazwe zmienej zmien na book
 void add(Book user[],int i);
 void display(Book user[],int i);
 void edit(Book user[]);
